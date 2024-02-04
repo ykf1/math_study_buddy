@@ -1,0 +1,7 @@
+wikipedia
+streamlit
+langchain
+duckduckgo-search
+openai
+python-dotenv
+langchain_experimental
