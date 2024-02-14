@@ -6,14 +6,12 @@ from langchain.schema import (
 from agent import get_response
 
 
-def main() -> None:
+def main():
 
     st.header("AI Math Tutor")
 
     # Display chat messages from history
     messages = st.session_state.get('messages', [])
-    # for message in messages:
-    #     st.chat_message(message["role"]).markdown(message["content"])
     for i, msg in enumerate(messages):
         if i % 2 == 0:
             st.chat_message("user").write(msg.content)
@@ -31,10 +29,7 @@ def main() -> None:
 
         # Display user message and append to session state messages
         st.chat_message("user").write(prompt)
-        st.session_state.messages.append(
-            # {'role':'user', 'content': prompt}
-            HumanMessage(content=prompt)
-        )
+        st.session_state.messages.append(HumanMessage(content=prompt))
 
         # Get AI response based on the user input
         generate_response(prompt, st.session_state.messages)
@@ -53,10 +48,7 @@ def generate_response(prompt: str, messages: list) -> None:
         with st.spinner("AI is thinking ..."):
             response = get_response(prompt)
 
-        messages.append(
-        #{"role": "assistant", "content": full_response}
-            AIMessage(content=response)
-        )
+        messages.append(AIMessage(content=response))
 
         st.write(response)
 
